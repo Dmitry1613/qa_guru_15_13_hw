@@ -17,16 +17,18 @@ public class TestData {
     static void configure() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-//      capabilities.setCapability("browserName", "chrome");
-//      capabilities.setCapability("browserVersion", "100.0");
-        capabilities.setCapability("enableVNC", true);
-        capabilities.setCapability("enableVideo", true);
-
-        Configuration.browserCapabilities = capabilities;
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.browser = System.getProperty("browser", "Chrome");
+        Configuration.browserVersion = System.getProperty("browserVersion", "105");
+        Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
+
+        if (System.getProperty("remote") != null) {
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("enableVNC", true);
+            capabilities.setCapability("enableVideo", true);
+            Configuration.browserCapabilities = capabilities;
+            Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        }
     }
 
     Faker faker = new Faker(new Locale("en-US"));
