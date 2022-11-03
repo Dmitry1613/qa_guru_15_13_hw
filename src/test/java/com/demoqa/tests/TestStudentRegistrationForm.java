@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.demoqa.pages.RegistrationFormPage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.step;
@@ -13,6 +14,7 @@ public class TestStudentRegistrationForm extends TestData {
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
     @DisplayName("Fill full form")
     @Test
+    @Tag("fill_full_form")
     void fillFormTest() {
         step("Open registrations form", () -> {
             registrationFormPage.openPage();
@@ -48,6 +50,7 @@ public class TestStudentRegistrationForm extends TestData {
     }
     @DisplayName("Fill minimum fields form")
     @Test
+    @Tag("fill_minimum_fields_form")
     void fillFormWithMinimumTest() {
 
         step("Open registrations form", () -> {
